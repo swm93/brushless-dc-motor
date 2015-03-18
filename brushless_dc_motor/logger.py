@@ -10,44 +10,49 @@ class Logger:
     }
     endc = '\033[0m'
 
+
+
     @staticmethod
-    def header(text):
+    def log(text, exc=None):
+        if (isinstance(text, BaseException)):
+            raise(text)
+        elif (exc != None):
+            raise(exc(text))
+        else:
+            print(text)
+
+
+    @staticmethod
+    def header(text, exc=None):
         msg = "%s%s%s" % (Logger.styles['HEADER'], text, Logger.endc)
-        print(msg)
-        return msg
+        Logger.log(msg, exc)
 
     @staticmethod
-    def success(text):
+    def success(text, exc=None):
         msg = "%s%s%s" % (Logger.styles['SUCCESS'], text, Logger.endc)
-        print(msg)
-        return msg
+        Logger.log(msg, exc)
 
     @staticmethod
-    def info(text):
+    def info(text, exc=None):
         msg = "%s%s%s" % (Logger.styles['INFO'], text, Logger.endc)
-        print(msg)
-        return msg
+        Logger.log(msg, exc)
 
     @staticmethod
-    def warning(text):
+    def warning(text, exc=None):
         msg = "%s%s%s" % (Logger.styles['WARNING'], text, Logger.endc)
-        print(msg)
-        return msg
+        Logger.log(msg, exc)
 
     @staticmethod
-    def error(text):
+    def error(text, exc=None):
         msg = "%s%s%s" % (Logger.styles['ERROR'], text, Logger.endc)
-        print(msg)
-        return msg
+        Logger.log(msg, exc)
 
     @staticmethod
-    def bold(text):
+    def bold(text, exc=None):
         msg = "%s%s%s" % (Logger.styles['BOLD'], text, Logger.endc)
-        print(msg)
-        return msg
+        Logger.log(msg, exc)
 
     @staticmethod
-    def underline(text):
+    def underline(text, exc=None):
         msg = "%s%s%s" % (Logger.styles['UNDERLINE'], text, Logger.endc)
-        print(msg)
-        return msg
+        Logger.log(msg, exc)
