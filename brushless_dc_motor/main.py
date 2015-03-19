@@ -1,3 +1,10 @@
+#   Main
+#
+# Creator:  Scott Mielcarski
+# Created:  March 9, 2015
+# Modified: March 17, 2015
+
+
 from motor import Motor
 try:
     from gpio_manager import GPIOManager as GPIOManager
@@ -18,20 +25,21 @@ gpio_manager = None
 def main():
     global gpio_manager
     gpio_manager = debug_mode_function[DEBUG]()
+    gpio_manager.input_callback = __tick_occurred__
 
     motor.run()
-    gpio_manager.start(__tick_occurred__)
+    gpio_manager.start()
 
 
 def run():
     input_pin = 11
-    output_pins = []
+    output_pins = [16, 17]
 
-    return GPIOManager(input_pin, output_pins)
+    return GPIOManager(motor, output_pins, input_pin)
 
 
 def simulate():
-    return GPIOManager(motor.coil_spacing_angle)
+    return GPIOManager(motor)
 
 
 
